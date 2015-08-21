@@ -29,6 +29,9 @@
   </tbody>
 </table>
 
-<br>
+<p>剩余人：</p>
 
-<%= link_to 'New Gift', new_gift_path %>
+<% @users.each do |user| %>
+  <%= user.name %> |
+<% end %>
+

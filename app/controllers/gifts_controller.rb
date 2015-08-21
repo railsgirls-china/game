@@ -5,6 +5,10 @@ class GiftsController < ApplicationController
   # GET /gifts.json
   def index
     @gifts = Gift.all
+
+    user_ids = UserGift.all.pluck(:user_id)
+
+    @users = User.where.not(id: user_ids)
   end
 
   # GET /gifts/1
