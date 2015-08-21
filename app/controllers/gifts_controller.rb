@@ -23,7 +23,7 @@ class GiftsController < ApplicationController
 
     @gift.users << @users.sample
 
-    redirect_to gift_path(@gift)
+    redirect_to gifts_path
   end
 
   # GET /gifts/new
