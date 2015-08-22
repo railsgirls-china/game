@@ -28,7 +28,7 @@ class GiftsController < ApplicationController
   def luck
     @gift = Gift.find params[:id]
 
-    user_ids = UserGift.all.pluck(:user_id)
+    user_ids = UserGift.includes(:gift).where.not(gifts: {name: ['杯子']}).pluck(:user_id)
     @users = User.where.not(id: user_ids)
 
     if @gift.name == '杯子'
@@ -38,7 +38,7 @@ class GiftsController < ApplicationController
     if @gift.amount > @gift.users.count
       @gift.users << @users.sample
     else
-      flash[:notice] = "奖品不够咯"
+      flash[:error] = "奖品不够咯"
     end
 
 
