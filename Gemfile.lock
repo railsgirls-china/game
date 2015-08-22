@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/qinmingyuan/default_form.git
+  revision: fdd7474c146339f0557d845b4426d5340ecc689e
+  specs:
+    default_form (0.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -141,6 +147,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
+  default_form!
   jbuilder (~> 2.0)
   jquery-rails
   mysql2
