@@ -7,8 +7,8 @@
       <th>奖品类别</th>
       <th>奖品名称</th>
       <th>数量</th>
-      <th>中奖人</th>
-      <th colspan="3"></th>
+      <th class="six wide column">中奖人</th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -21,17 +21,18 @@
         <td><%= gift.users.pluck(:name).join(',') %></td>
         <td><%= link_to '抽奖', luck_gift_path(gift) %></td>
         <td><%= link_to '重置', reset_gift_path(gift) %></td>
-        <td><%= link_to 'Show', gift %></td>
-        <td><%= link_to 'Edit', edit_gift_path(gift) %></td>
-        <td><%= link_to 'Destroy', gift, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '编辑', edit_gift_path(gift) %></td>
+        <td><%= link_to '删除', gift, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<p>剩余人：</p>
+<div class="ui segment">
+  <% @users.each do |user| %>
+    <span class="ui grey"><%= user.name %></span>
+  <% end %>
+</div>
 
-<% @users.each do |user| %>
-  <p><%= user.name %></p>
-<% end %>
+
 

@@ -23,7 +23,7 @@ class GiftsController < ApplicationController
 
     if @gift.name == '杯子'
       user_ids = UserGift.includes(:gift).where(gifts: {name: ['杯子']}).pluck(:user_id)
-      @users = @users.where(role: 'student').not(id: user_ids)
+      @users = User.where.not(id: user_ids).where(role: 'student')
     else
       user_ids = UserGift.includes(:gift).where.not(gifts: {name: ['杯子']}).pluck(:user_id)
       @users = User.where.not(id: user_ids)
