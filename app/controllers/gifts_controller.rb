@@ -1,8 +1,7 @@
 class GiftsController < ApplicationController
   before_action :set_gift, only: [:show, :edit, :update, :destroy]
 
-  # GET /gifts
-  # GET /gifts.json
+
   def index
     @gifts = Gift.all
 
@@ -10,12 +9,6 @@ class GiftsController < ApplicationController
     @users = User.where.not(id: user_ids)
   end
 
-  # GET /gifts/1
-  # GET /gifts/1.json
-  def show
-
-    @users = @gift.users
-  end
 
   def reset
     @gift = Gift.find params[:id]
@@ -27,7 +20,7 @@ class GiftsController < ApplicationController
 
   def luck
     @gift = Gift.find params[:id]
-    
+
     if @gift.name == '杯子'
       user_ids = UserGift.includes(:gift).where(gifts: {name: ['杯子']}).pluck(:user_id)
       @users = @users.where(role: 'student').not(id: user_ids)
@@ -41,7 +34,6 @@ class GiftsController < ApplicationController
     else
       flash[:error] = "奖品不够咯"
     end
-
 
     redirect_to gifts_path
   end

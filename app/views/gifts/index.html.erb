@@ -16,7 +16,7 @@
     <% @gifts.each do |gift| %>
       <tr>
         <td><%= gift.grade %></td>
-        <td><%= gift.name %></td>
+        <td><%= gift.name if gift.users.count > 0 %></td>
         <td><%= gift.amount %></td>
         <td><%= gift.users.pluck(:name).join(',') %></td>
         <td><%= link_to '抽奖', luck_gift_path(gift) %></td>

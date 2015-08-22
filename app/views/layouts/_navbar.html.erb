@@ -3,13 +3,13 @@
 
 
     <%= image_tag "logo.png", class: 'item', size: '50x50' %>
+    <div class="header ui red item">
+      Rails Girls
+    </div>
 
     <%= link_to '抽奖', gifts_path, class: 'item' %>
+    <%= link_to '人员列表', users_path, class: 'item' %>
 
 
   </div>
 </div>
-
-<script>
-  $('.ui.dropdown').dropdown();
-</script>
