@@ -7,7 +7,6 @@ class GiftsController < ApplicationController
     @gifts = Gift.all
 
     user_ids = UserGift.all.pluck(:user_id)
-
     @users = User.where.not(id: user_ids)
   end
 
@@ -22,10 +21,14 @@ class GiftsController < ApplicationController
     @gift = Gift.find params[:id]
 
     user_ids = UserGift.all.pluck(:user_id)
-
     @users = User.where.not(id: user_ids)
 
-    @gift.users << @users.sample
+    if @gift.amount > @gift.users.count
+      @gift.users << @users.sample
+    else
+      flash[:notice] = "奖品不够咯"
+    end
+
 
     redirect_to gifts_path
   end
