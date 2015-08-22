@@ -1,17 +1,8 @@
-<%= form_for(@gift) do |f| %>
-  <% if @gift.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@gift.errors.count, "error") %> prohibited this gift from being saved:</h2>
+<%= default_form_for(@gift) do |f| %>
 
-      <ul>
-      <% @gift.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.text_field :grade %>
+  <%= f.text_field :name %>
+  <%= f.number_field :amount %>
+  <%= f.submit %>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

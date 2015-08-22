@@ -4,18 +4,22 @@
 
 <h2>人数： <%= User.count %> </h2>
 
-<table class="ui table">
+<table class="ui celled table">
   <thead>
     <tr>
+      <th>ID</th>
       <th>姓名</th>
-      <th colspan="2"></th>
+      <th>角色</th>
+      <th>操作</th>
     </tr>
   </thead>
 
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.id %></td>
         <td><%= user.name %></td>
+        <td><%= user.role %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

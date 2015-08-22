@@ -1,5 +1,11 @@
-<h1>New Gift</h1>
+<div class="twelve wide column">
 
-<%= render 'form' %>
+  <ul class="ui breadcrumb">
+    <li class="section"><%= link_to '抽奖列表', gifts_path %></li>
+    <li class="divider"> / </li>
+    <li class="section">New Gift</li>
+  </ul>
 
-<%= link_to 'Back', gifts_path %>
+  <%= render 'form' %>
+
+</div>

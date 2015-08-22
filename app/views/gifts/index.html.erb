@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Gifts</h1>
+<h1 class="ui header">奖品列表</h1>
 
 <table class="ui table">
   <thead>
@@ -21,6 +21,7 @@
         <td><%= gift.amount %></td>
         <td><%= gift.users.pluck(:name).join(',') %></td>
         <td><%= link_to '抽奖', luck_gift_path(gift) %></td>
+        <td><%= link_to '重置', reset_gift_path(gift) %></td>
         <td><%= link_to 'Show', gift %></td>
         <td><%= link_to 'Edit', edit_gift_path(gift) %></td>
         <td><%= link_to 'Destroy', gift, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -32,6 +33,6 @@
 <p>剩余人：</p>
 
 <% @users.each do |user| %>
-  <%= user.name %> |
+  <p><%= user.name %></p>
 <% end %>
 

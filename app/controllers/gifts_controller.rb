@@ -17,11 +17,23 @@ class GiftsController < ApplicationController
     @users = @gift.users
   end
 
+  def reset
+    @gift = Gift.find params[:id]
+
+    @gift.users.clear
+
+    redirect_to gifts_url
+  end
+
   def luck
     @gift = Gift.find params[:id]
 
     user_ids = UserGift.all.pluck(:user_id)
     @users = User.where.not(id: user_ids)
+
+    if @gift.name == '杯子'
+      @users = @users.where(role: 'student')
+    end
 
     if @gift.amount > @gift.users.count
       @gift.users << @users.sample
@@ -49,7 +61,7 @@ class GiftsController < ApplicationController
 
     respond_to do |format|
       if @gift.save
-        format.html { redirect_to @gift, notice: 'Gift was successfully created.' }
+        format.html { redirect_to gifts_url, notice: 'Gift was successfully created.' }
         format.json { render :show, status: :created, location: @gift }
       else
         format.html { render :new }
@@ -63,7 +75,7 @@ class GiftsController < ApplicationController
   def update
     respond_to do |format|
       if @gift.update(gift_params)
-        format.html { redirect_to @gift, notice: 'Gift was successfully updated.' }
+        format.html { redirect_to gifts_url, notice: 'Gift was successfully updated.' }
         format.json { render :show, status: :ok, location: @gift }
       else
         format.html { render :edit }
@@ -90,6 +102,6 @@ class GiftsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gift_params
-      params[:gift]
+      params[:gift].permit(:grade, :name, :amount)
     end
 end
